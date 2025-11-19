@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giao diện Nhân vật</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -40,15 +40,20 @@
         </div>
         
         <div class="music-controls">
-            <button id="play-btn" class="btn btn-lg btn-outline-light rounded-circle play-btn-modern">
-                <i class="bi bi-play-fill fs-3"></i>
+            <button id="play-btn" class="play-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+            <!-- Nút Play riêng cho Android (Bootstrap) - Mặc định ẩn -->
+            <button id="android-play-btn" class="btn btn-primary rounded-circle d-none align-items-center justify-content-center" style="width: 60px; height: 60px; box-shadow: 0 0 15px rgba(13, 110, 253, 0.5);">
+                 <svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
             </button>
         </div>
         
         <canvas id="visualizer"></canvas>
         <audio id="bg-music" src="nhac.wav" loop></audio>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
