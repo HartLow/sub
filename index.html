@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao diện Nhân vật</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <video id="bg-video" src="sub.mp4" muted playsinline></video>
+    <div id="three-bg"></div>
+    <div class="background-overlay"></div>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">We Don't Talk Anymore</h1>
+            <p class="subtitle">Cover : Daisy & Yu | 2P</p>
+        </header>
+        
+        <div class="characters-grid">
+            <div class="character">
+                <div class="avatar-frame">
+                    <img src="img/daisy.png" alt="Daisy">
+                </div>
+                <p class="character-name">月. Daisy</p>
+            </div>
+            <div class="character">
+                <div class="avatar-frame">
+                    <img src="img/yu.png" alt="Yu">
+                </div>
+                <p class="character-name">月. Yu</p>
+            </div>
+        </div>
+        
+        <div class="lyrics-area">
+            <!-- Khu vực hiển thị lời bài hát -->
+            <p class="lyric-line">...</p>
+        </div>
+        
+        <div class="music-controls">
+            <button id="play-btn" class="play-btn">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+        </div>
+        
+        <canvas id="visualizer"></canvas>
+        <audio id="bg-music" src="nhac.wav" loop></audio>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
