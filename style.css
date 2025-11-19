@@ -324,57 +324,44 @@ body {
 .music-controls {
     margin-top: 20px;
     z-index: 10;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.play-btn {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
-    padding: 0;
-    /* Fix cho mobile Android Chrome */
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
+.play-btn-modern {
+    width: 70px !important;
+    height: 70px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 2px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
-.play-btn:hover,
-.play-btn:focus,
-.play-btn:active {
-    background: rgba(255, 255, 255, 0.2);
+.play-btn-modern:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    transform: scale(1.15);
+    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+}
+
+.play-btn-modern:active {
+    transform: scale(0.95);
+}
+
+.play-btn-modern i {
+    transition: transform 0.3s ease;
+}
+
+.play-btn-modern:hover i {
     transform: scale(1.1);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    outline: none;
 }
 
-.play-btn svg {
-    width: 28px;
-    height: 28px;
-    pointer-events: none; /* Đảm bảo click vào nút chứ không phải SVG */
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .play-btn {
-        width: 70px;
-        height: 70px;
-        border: 2px solid rgba(255, 255, 255, 0.5);
-    }
-    
-    .play-btn svg {
-        width: 32px;
-        height: 32px;
-    }
+/* Xóa style cũ của nút play */
+.play-btn:not(.play-btn-modern) {
+    display: none;
 }
 
 /* Visualizer Canvas */

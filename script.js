@@ -46,12 +46,12 @@ function setupAudio() {
         if (audio.paused) {
             audio.play();
             if (video) video.play(); // Chạy video cùng lúc
-            playBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+            playBtn.innerHTML = '<i class="bi bi-pause-fill fs-3"></i>';
             isPlaying = true;
         } else {
             audio.pause();
             if (video) video.pause(); // Dừng video cùng lúc
-            playBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+            playBtn.innerHTML = '<i class="bi bi-play-fill fs-3"></i>';
             isPlaying = false;
         }
     });
@@ -63,7 +63,7 @@ function setupAudio() {
             video.pause();
             video.currentTime = 0; // Reset video về đầu
             isPlaying = false;
-            playBtn.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+            playBtn.innerHTML = '<i class="bi bi-play-fill fs-3"></i>';
         });
 
         // Khi tua audio
