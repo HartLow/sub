@@ -32,7 +32,7 @@ body {
         border-radius: 0; /* Bỏ bo góc để tràn viền */
     }
     
-    .container {
+    .player-container {
         max-width: 100%; /* Full width trên mobile */
     }
 }
@@ -74,7 +74,7 @@ body {
     pointer-events: none;
 }
 
-.container {
+.player-container {
     text-align: center;
     width: 100%;
     max-width: 56.25vh; /* Tỷ lệ 9:16 dựa trên chiều cao (9/16 = 0.5625) */
@@ -326,42 +326,30 @@ body {
     z-index: 10;
 }
 
-.play-btn-modern {
-    width: 70px !important;
-    height: 70px !important;
-    padding: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.1) !important;
-    border: 2px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+.play-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
-.play-btn-modern:hover {
-    background: rgba(255, 255, 255, 0.2) !important;
-    border-color: rgba(255, 255, 255, 0.6) !important;
-    transform: scale(1.15);
-    box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
-}
-
-.play-btn-modern:active {
-    transform: scale(0.95);
-}
-
-.play-btn-modern i {
-    transition: transform 0.3s ease;
-}
-
-.play-btn-modern:hover i {
+.play-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
     transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
-/* Xóa style cũ của nút play */
-.play-btn:not(.play-btn-modern) {
-    display: none;
+.play-btn svg {
+    width: 24px;
+    height: 24px;
 }
 
 /* Visualizer Canvas */

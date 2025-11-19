@@ -6,7 +6,7 @@ function setupAudio() {
     const audio = document.getElementById('bg-music');
     const video = document.getElementById('bg-video'); // Video nền
     const playBtn = document.getElementById('play-btn');
-    const androidPlayBtn = document.getElementById('android-play-btn'); // Nút Android
+    const mobilePlayBtn = document.getElementById('mobile-play-btn'); // Nút play mobile
     const canvas = document.getElementById('visualizer');
     const ctx = canvas.getContext('2d');
     const yuAvatar = document.querySelector('.character:nth-child(2) .avatar-frame');
@@ -15,14 +15,6 @@ function setupAudio() {
     let audioContext, analyser, source;
     let isPlaying = false;
     let threeApp = null; // Object to manage Three.js
-
-    // Detect Android
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    if (isAndroid && androidPlayBtn) {
-        playBtn.style.display = 'none'; // Ẩn nút PC
-        androidPlayBtn.classList.remove('d-none'); // Hiện nút Android
-        androidPlayBtn.classList.add('d-flex'); // Flex để căn giữa icon
-    }
 
     // Define singing timeline (in seconds)
     const timeline = [
@@ -47,7 +39,6 @@ function setupAudio() {
     // Init Three.js background
     initThreeJS();
 
-    // Hàm xử lý Play/Pause chung
     function togglePlay() {
         if (!audioContext) {
             initAudioContext();
@@ -55,33 +46,28 @@ function setupAudio() {
 
         if (audio.paused) {
             audio.play();
-            if (video) video.play();
-            
-            // Update icon cho cả 2 nút
-            const pauseIcon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-            const pauseIconLarge = '<svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-            
-            playBtn.innerHTML = pauseIcon;
-            if (androidPlayBtn) androidPlayBtn.innerHTML = pauseIconLarge;
-            
+            if (video) video.play(); // Chạy video cùng lúc
+            updatePlayButtons(true);
             isPlaying = true;
         } else {
             audio.pause();
-            if (video) video.pause();
-            
-            // Update icon cho cả 2 nút
-            const playIcon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
-            const playIconLarge = '<svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
-            
-            playBtn.innerHTML = playIcon;
-            if (androidPlayBtn) androidPlayBtn.innerHTML = playIconLarge;
-            
+            if (video) video.pause(); // Dừng video cùng lúc
+            updatePlayButtons(false);
             isPlaying = false;
         }
     }
 
-    playBtn.addEventListener('click', togglePlay);
-    if (androidPlayBtn) androidPlayBtn.addEventListener('click', togglePlay);
+    function updatePlayButtons(playing) {
+        const icon = playing 
+            ? '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>'
+            : '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
+        
+        if(playBtn) playBtn.innerHTML = icon;
+        if(mobilePlayBtn) mobilePlayBtn.innerHTML = icon;
+    }
+
+    if(playBtn) playBtn.addEventListener('click', togglePlay);
+    if(mobilePlayBtn) mobilePlayBtn.addEventListener('click', togglePlay);
 
     // Đồng bộ video với audio
     if (video) {
@@ -90,12 +76,7 @@ function setupAudio() {
             video.pause();
             video.currentTime = 0; // Reset video về đầu
             isPlaying = false;
-            
-            const playIcon = '<svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
-            const playIconLarge = '<svg viewBox="0 0 24 24" width="32" height="32"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>';
-            
-            playBtn.innerHTML = playIcon;
-            if (androidPlayBtn) androidPlayBtn.innerHTML = playIconLarge;
+            updatePlayButtons(false);
         });
 
         // Khi tua audio
